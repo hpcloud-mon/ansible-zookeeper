@@ -1,0 +1,32 @@
+---
+- name: Install OpenJDK
+  apt: name=openjdk-7-jre-headless state=present
+
+- name: Install Zookeeper
+  apt: name=zookeeper state=present
+
+- name: Setup upstart script (needed for precise)
+  copy: dest=/etc/init/zookeeper.conf owner=root group=root mode=644 src=zookeeper.conf
+  notify:
+    - restart zookeeper
+
+- name: Create conf_dir
+  file: path={{conf_dir}} state=directory owner=root group=root mode=755
+
+- name: Setup zoo.cfg
+  template: dest="{{conf_dir}}/zoo.cfg" src=zoo.cfg.j2
+  notify:
+    - restart zookeeper
+
+- name: Setup environment
+  template: dest="{{conf_dir}}/environment" src=environment.j2
+  notify:
+    - restart zookeeper
+
+- name: Create log_dir
+  file: path={{log_dir}} state=directory owner=zookeeper group=zookeeper mode=755
+
+- name: Setup log4j
+  copy: dest="{{conf_dir}}/log4j.properties" owner=root group=root mode=644 src=log4j.properties
+  notify:
+    - restart zookeeper
