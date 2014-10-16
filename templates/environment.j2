@@ -6,7 +6,7 @@ ZOOCFGDIR=/etc/$NAME/conf
 CLASSPATH="$ZOOCFGDIR:/usr/share/java/jline.jar:/usr/share/java/log4j-1.2.jar:/usr/share/java/xercesImpl.jar:/usr/share/java/xmlParserAPIs.jar:/usr/share/java/netty.jar:/usr/share/java/slf4j-api.jar:/usr/share/java/slf4j-log4j12.jar:/usr/share/java/zookeeper.jar"
 
 ZOOCFG="$ZOOCFGDIR/zoo.cfg"
-ZOO_LOG_DIR={{log_dir}}
+ZOO_LOG_DIR={{zookeeper_log_dir}}
 USER=$NAME
 GROUP=$NAME
 PIDDIR=/var/run/$NAME

@@ -17,12 +17,12 @@ dataDir=/var/lib/zookeeper
 clientPort=2181
 
 # Maximum number of clients that can connect from one client
-maxClientCnxns={{maxClientCnxns}}
+maxClientCnxns={{zookeeper_maxClientCnxns}}
 
 # specify all zookeeper servers
 # The fist port is used by followers to connect to the leader
 # The second one is used for leader election
-{% if servers is not none %}
+{% if zookeeper_servers is not none %}
   {% for host, id in servers.iteritems() %}
 server.{{id}}={{host}}:2888:3888
   {% endfor %}
