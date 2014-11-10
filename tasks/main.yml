@@ -3,12 +3,7 @@
   apt: name=openjdk-7-jre-headless state=present
 
 - name: Install Zookeeper
-  apt: name=zookeeper state=present
-
-- name: Setup upstart script (needed for precise)
-  copy: dest=/etc/init/zookeeper.conf owner=root group=root mode=644 src=zookeeper.conf
-  notify:
-    - restart zookeeper
+  apt: name=zookeeperd state=present
 
 - name: Create conf_dir
   file: path={{zookeeper_conf_dir}} state=directory owner=root group=root mode=755
