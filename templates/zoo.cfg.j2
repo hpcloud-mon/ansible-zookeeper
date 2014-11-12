@@ -23,7 +23,7 @@ maxClientCnxns={{zookeeper_maxClientCnxns}}
 # The fist port is used by followers to connect to the leader
 # The second one is used for leader election
 {% if zookeeper_servers is not none %}
-  {% for host, id in servers.iteritems() %}
+  {% for host, id in zookeeper_servers.iteritems() %}
 server.{{id}}={{host}}:2888:3888
   {% endfor %}
 {% endif %}

@@ -2,7 +2,7 @@
 Installs [zookeeper](http://zookeeper.apache.org/)
 
 ##Requirements
-- servers - dictionary with host as keys and value the id, empty for a single node
+- zookeeper_servers - dictionary with host as keys and value the id, empty for a single node
 
 ##License
 Apache
