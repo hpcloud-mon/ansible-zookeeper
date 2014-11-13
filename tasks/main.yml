@@ -12,11 +12,13 @@
   template: dest="{{zookeeper_conf_dir}}/zoo.cfg" src=zoo.cfg.j2
   notify:
     - restart zookeeper
+    - wait for zookeeper port
 
 - name: Setup environment
   template: dest="{{zookeeper_conf_dir}}/environment" src=environment.j2
   notify:
     - restart zookeeper
+    - wait for zookeeper port
 
 - name: Create log_dir
   file: path={{zookeeper_log_dir}} state=directory owner=zookeeper group=zookeeper mode=755
@@ -25,3 +27,4 @@
   copy: dest="{{zookeeper_conf_dir}}/log4j.properties" owner=root group=root mode=644 src=log4j.properties
   notify:
     - restart zookeeper
+    - wait for zookeeper port
