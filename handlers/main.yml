@@ -3,4 +3,4 @@
   service: name=zookeeper state=restarted enabled=yes
 
 - name: wait for zookeeper port
-  wait_for: port={{zookeeper_port}} state=started
+  wait_for: port={{zookeeper_client_port}} state=started
