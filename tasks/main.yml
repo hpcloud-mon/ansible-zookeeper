@@ -25,3 +25,4 @@
   copy: dest="{{zookeeper_conf_dir}}/log4j.properties" owner=root group=root mode=644 src=log4j.properties
   notify:
     - restart zookeeper
+    - wait for zookeeper port
