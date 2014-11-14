@@ -1,0 +1,9 @@
+{% if zookeeper_servers is not none -%}
+  {%- for host in zookeeper_servers.iterkeys() -%}
+    {%- if host == ansible_fqdn or host in ansible_all_ipv4_addresses -%}
+{{ zookeeper_servers[host] }}
+    {%- endif -%}
+  {%- endfor -%}
+{%- else -%}
+0
+{%- endif -%}

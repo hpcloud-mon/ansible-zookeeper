@@ -14,6 +14,12 @@
     - restart zookeeper
     - wait for zookeeper port
 
+- name: Setup myid
+  template: dest="{{zookeeper_conf_dir}}/myid" src=myid.j2
+  notify:
+    - restart zookeeper
+    - wait for zookeeper port
+
 - name: Setup environment
   template: dest="{{zookeeper_conf_dir}}/environment" src=environment.j2
   notify:
