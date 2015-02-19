@@ -5,9 +5,6 @@
 - name: Install Zookeeper
   apt: name=zookeeperd state=present
 
-- name: Create conf_dir
-  file: path={{zookeeper_conf_dir}} state=directory owner=root group=root mode=755
-
 - name: Setup zoo.cfg
   template: dest="{{zookeeper_conf_dir}}/zoo.cfg" src=zoo.cfg.j2
   notify:
