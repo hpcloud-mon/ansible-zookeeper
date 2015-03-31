@@ -2,7 +2,7 @@
 Installs [zookeeper](http://zookeeper.apache.org/)
 
 ##Requirements
-- zookeeper_servers - dictionary with host as keys and value the id, empty for a single node
+- zookeeper_hosts - comma separated list of host:port pairs, defaults to 'ansible_fqdn:2181' for a single node
 
 ##License
 Apache
