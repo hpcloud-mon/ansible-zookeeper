@@ -1,9 +1,5 @@
-{% if zookeeper_servers is not none -%}
-  {%- for host in zookeeper_servers.iterkeys() -%}
-    {%- if host == ansible_fqdn or host in ansible_all_ipv4_addresses -%}
-{{ zookeeper_servers[host] }}
-    {%- endif -%}
-  {%- endfor -%}
-{%- else -%}
-0
-{%- endif -%}
+{%- for url in zookeeper_hosts.split(',') -%}
+  {%- if url.split(':')[0] == ansible_fqdn or url.split(':')[0] in ansible_all_ipv4_addresses -%}
+{{ loop.index0 }}
+  {%- endif -%}
+{%- endfor -%}
