@@ -1,9 +1,5 @@
-{%- if zookeeper_id is defined -%}
-{{ zookeeper_id }}
-{%- else-%}
-  {%- for url in zookeeper_hosts.split(',') -%}
-    {%- if url.split(':')[0] == ansible_fqdn or url.split(':')[0] in ansible_all_ipv4_addresses -%}
+{%- for url in zookeeper_hosts.split(',') -%}
+  {%- if url.split(':')[0] == ansible_fqdn or url.split(':')[0] in ansible_all_ipv4_addresses -%}
 {{ loop.index0 }}
-    {%- endif -%}
-  {%- endfor -%}
-{%- endif -%}
+  {%- endif -%}
+{%- endfor -%}
