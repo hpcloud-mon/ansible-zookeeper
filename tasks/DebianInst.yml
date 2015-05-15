@@ -1,0 +1,5 @@
+- name: Install OpenJDK
+  apt: name=openjdk-7-jre-headless state=present
+
+- name: Install Zookeeper
+  apt: name=zookeeperd state=present

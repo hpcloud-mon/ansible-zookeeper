@@ -1,0 +1,23 @@
+- name: Install OpenJDK
+  yum: name=java-1.7.0-openjdk state=present
+
+- name: Change ownership on monasca download directory.
+  file: path="{{monasca_download_dir}}" state=directory owner=zookeeper group=zookeeper recurse=yes
+
+- name: Change ownership on zokeeper directory.
+  file: path="{{zookeeper_dir}}" state=directory owner=zookeeper group=zookeeper recurse=yes
+
+
+- name: Download Zookeeper version
+  get_url: url={{zookeeper_url}} dest={{monasca_download_dir}}/zookeeper-{{zookeeper_version}}.tar.gz timeout=100
+
+- name: Unpack tarball
+  command: tar xzf {{monasca_download_dir}}/zookeeper-{{zookeeper_version}}.tar.gz --strip-components=1 chdir={{zookeeper_dir}} creates={{zookeeper_dir}}/bin
+
+- name: Setup Apache ZooKeeper service
+  template: dest="/etc/systemd/system/zookeeper.service" src=zookeeper.service.j2
+  register: zookeeper_service
+
+- name: reload systemd
+  command: /usr/bin/systemctl --system daemon-reload
+  when: zookeeper_service | changed

@@ -1,0 +1,23 @@
+[Unit]
+Description=Apache ZooKeeper
+After=network.target
+ConditionPathExists={{ zookeeper_conf_dir }}/zoo.cfg
+ConditionPathExists={{ zookeeper_conf_dir }}/log4j.properties
+
+[Service]
+Type=forking
+User=root
+SyslogIdentifier=zookeeper
+WorkingDirectory={{ zookeeper_data_dir }}
+UMask=0027
+Environment="ZOOCFGDIR={{ zookeeper_conf_dir }}"
+Environment="ZOO_LOG_DIR={{zookeeper_log_dir}}"
+Environment="JMXLOCALONLY=false"
+Environment="ZOO_LOG4J_PROP=INFO,ROLLINGFILE"
+ExecStart={{ zookeeper_dir }}/bin/zkServer.sh start
+ExecStop={{ zookeeper_dir }}/bin/zkServer.sh stop
+ExecReload={{ zookeeper_dir }}/bin/zkServer.sh restart
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

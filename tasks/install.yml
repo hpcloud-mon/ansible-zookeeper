@@ -1,6 +1,6 @@
 ---
-- name: Install OpenJDK
-  apt: name=openjdk-7-jre-headless state=present
+- include: DebianInst.yml
+  when: "ansible_os_family == 'Debian'"
 
-- name: Install Zookeeper
-  apt: name=zookeeperd state=present
+- include: RedHatInst.yml
+  when: "ansible_os_family == 'RedHat'"
