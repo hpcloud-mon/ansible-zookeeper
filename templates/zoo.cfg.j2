@@ -52,5 +52,6 @@ server.{{loop.index0}}={{url.split(':')[0]}}:2888:3888
 # on coordination.
 #leaderServes=yes
 
-# Autopurge, purge every day
-autopurge.purgeInterval = 24
+# Autopurge every hour to avoid using lots of disk in bursts
+autopurge.purgeInterval = 1
+autopurge.snapRetainCount = 3
