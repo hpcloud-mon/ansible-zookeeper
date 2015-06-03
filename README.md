@@ -6,6 +6,7 @@ Installs [zookeeper](http://zookeeper.apache.org/)
 
 ##Optional
 - zookeeper_id - Id to be used if one can't or shouldn't be derived from zookeeper_hosts. This will happen if zookeeper_hosts doesn't contain the fqdn but an alias
+- zookeeper_heap_opt - Java Heap option for the zookeeper process. Default is to let the JRE decide
 
 ##License
 Apache
