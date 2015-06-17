@@ -1,37 +1,12 @@
 ---
-- name: Install OpenJDK
-  apt: name=openjdk-7-jre-headless state=present
+- include: stop.yml
+  when:  run_mode == 'Stop'
 
-- name: Install Zookeeper
-  apt: name=zookeeperd state=present
+- include: install.yml
+  when:  run_mode == 'Install' or run_mode == 'Deploy'
 
-- name: Setup zoo.cfg
-  template: dest="{{zookeeper_conf_dir}}/zoo.cfg" src=zoo.cfg.j2
-  notify:
-    - restart zookeeper
+- include: configure.yml
+  when:  run_mode == 'Configure' or run_mode == 'Deploy'
 
-- name: Setup myid
-  template: dest="{{zookeeper_conf_dir}}/myid" src=myid.j2
-  notify:
-    - restart zookeeper
-
-- name: Setup environment
-  template: dest="{{zookeeper_conf_dir}}/environment" src=environment.j2
-  notify:
-    - restart zookeeper
-
-- name: Create log_dir
-  file: path={{zookeeper_log_dir}} state=directory owner=zookeeper group=zookeeper mode=755
-
-- name: Setup log4j
-  copy: dest="{{zookeeper_conf_dir}}/log4j.properties" owner=root group=root mode=644 src=log4j.properties
-  notify:
-    - restart zookeeper
-
-- meta: flush_handlers
-
-- name: Enable zookeeper
-  service: name=zookeeper state=started enabled=yes
-
-- name: wait for zookeeper port
-  wait_for: port={{zookeeper_client_port}} state=started timeout=30
+- include: start.yml
+  when:  run_mode == 'Start' or run_mode == 'Deploy'
