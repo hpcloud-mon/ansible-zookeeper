@@ -1,0 +1,3 @@
+---
+- name: Stop zookeeper
+  service: name=zookeeper state=stopped
