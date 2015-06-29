@@ -18,7 +18,7 @@
   file: path={{zookeeper_log_dir}} state=directory owner=zookeeper group=zookeeper mode=755
 
 - name: Setup log4j
-  copy: dest="{{zookeeper_conf_dir}}/log4j.properties" owner=root group=root mode=644 src=log4j.properties
+  template: dest="{{zookeeper_conf_dir}}/log4j.properties" owner=root group=root mode=644 src=log4j.properties.j2
   notify:
     - restart zookeeper
 
