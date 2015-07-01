@@ -3,4 +3,5 @@ monasca_log_level: WARN
 zookeeper_maxClientCnxns: 60
 zookeeper_client_port: 2181
 zookeeper_hosts: "{{ansible_fqdn}}:2181"
+zookeeper_wait_for_period: 30
 run_mode: Deploy
