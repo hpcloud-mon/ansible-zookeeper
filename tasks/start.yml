@@ -3,4 +3,4 @@
   service: name=zookeeper state=started enabled=yes
 
 - name: wait for zookeeper port
-  wait_for: port={{zookeeper_client_port}} state=started timeout=30
+  wait_for: port={{zookeeper_client_port}} state=started timeout={{ monasca_wait_for_period }}
