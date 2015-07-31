@@ -3,23 +3,29 @@
   template: dest="{{zookeeper_conf_dir}}/zoo.cfg" src=zoo.cfg.j2
   notify:
     - restart zookeeper
+    - monasca_zookeeper_config_change
 
 - name: Setup myid
   template: dest="{{zookeeper_conf_dir}}/myid" src=myid.j2
   notify:
     - restart zookeeper
+    - monasca_zookeeper_config_change
 
 - name: Setup environment
   template: dest="{{zookeeper_conf_dir}}/environment" src=environment.j2
   notify:
     - restart zookeeper
+    - monasca_zookeeper_config_change
 
 - name: Create log_dir
   file: path={{zookeeper_log_dir}} state=directory owner=zookeeper group=zookeeper mode=755
+  notify:
+    - monasca_zookeeper_config_change
 
 - name: Setup log4j
   template: dest="{{zookeeper_conf_dir}}/log4j.properties" owner=root group=root mode=644 src=log4j.properties.j2
   notify:
     - restart zookeeper
+    - monasca_zookeeper_config_change
 
 - meta: flush_handlers

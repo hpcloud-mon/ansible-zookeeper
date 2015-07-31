@@ -2,3 +2,7 @@
 - name: restart zookeeper
   service: name=zookeeper state=restarted
   when: run_mode == 'Deploy'
+
+- name: monasca_zookeeper_config_change
+  set_fact:
+    monasca_zookeeper_restart_required: true

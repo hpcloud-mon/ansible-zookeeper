@@ -5,3 +5,6 @@ zookeeper_client_port: 2181
 zookeeper_hosts: "{{ansible_fqdn}}:2181"
 monasca_wait_for_period: 30
 run_mode: Deploy
+
+# flag to track restart requirement during reconfigure
+monasca_zookeeper_restart_required: false
