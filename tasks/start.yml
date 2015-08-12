@@ -1,4 +1,6 @@
 ---
+# ©Copyright 2015 Hewlett-Packard Development Company, L.P.
+
 - name: Enable and start zookeeper
   service: name=zookeeper state=started enabled=yes
 

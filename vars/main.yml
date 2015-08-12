@@ -1,3 +1,5 @@
 ---
+# ©Copyright 2015 Hewlett-Packard Development Company, L.P.
+
 zookeeper_conf_dir: /etc/zookeeper/conf
 zookeeper_log_dir: /var/log/zookeeper

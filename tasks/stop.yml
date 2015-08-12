@@ -1,3 +1,5 @@
 ---
+# ©Copyright 2015 Hewlett-Packard Development Company, L.P.
+
 - name: Stop zookeeper
   service: name=zookeeper state=stopped

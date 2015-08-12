@@ -1,4 +1,6 @@
 ---
+# ©Copyright 2015 Hewlett-Packard Development Company, L.P.
+
 monasca_log_level: WARN
 zookeeper_maxClientCnxns: 60
 zookeeper_client_port: 2181
