@@ -12,6 +12,9 @@ galaxy_info:
   - name: Debian
     versions:
     - jessie
+  - name: RedHat
+    versions:
+    - all
   categories:
   - clustering
 dependencies: []
