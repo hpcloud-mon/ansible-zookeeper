@@ -53,5 +53,7 @@ server.{{loop.index0}}={{url.split(':')[0]}}:2888:3888
 #leaderServes=yes
 
 # Autopurge every hour to avoid using lots of disk in bursts
-autopurge.purgeInterval = 1
-autopurge.snapRetainCount = 3
+# Order of the next 2 properties matters.
+# autopurge.snapRetainCount must be before autopurge.purgeInterval.
+autopurge.snapRetainCount=3
+autopurge.purgeInterval=1
